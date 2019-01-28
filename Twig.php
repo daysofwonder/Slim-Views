@@ -109,15 +109,7 @@ class Twig extends \Slim\View
     public function getInstance()
     {
         if (!$this->parserInstance) {
-            /**
-             * Check if Twig_Autoloader class exists
-             * otherwise include it.
-             */
-            if (!class_exists('\Twig_Autoloader')) {
-                require_once $this->parserDirectory . '/Autoloader.php';
-            }
-
-            \Twig_Autoloader::register();
+            // With Twig 2.X Use Composer Loader. Don't use anymore a Twig_Autoloader class
             $loader = new \Twig_Loader_Filesystem($this->getTemplateDirs());
             $this->parserInstance = new \Twig_Environment(
                 $loader,
